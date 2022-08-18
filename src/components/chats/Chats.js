@@ -4,16 +4,26 @@ import LeftPanel from "../leftPanel/LeftPanel";
 import {dataUsers, dataUserObject} from '../../data/dataUsers'
 
 const Chats = () => {
-    const [activeChat, setActiveChat] = useState('funny')
-    const [lastMessage, setLastMessage]=useState()
-    dataUsers.map(users=>{
-      dataUserObject[users.user_id].messages=localStorage.getItem(users.user_id) ? JSON.parse(localStorage.getItem(users.user_id)) : localStorage.setItem(users.user_id, JSON.stringify(dataUserObject[users.user_id].messages));
+    const [activeChat, setActiveChat] = useState('small')
+    const [chuck, setChuck] = useState(' ')
+    const [lastMessage, setLastMessage] = useState()
+    const [message, setMessage] = useState('')
+    dataUsers.map(users => {
+        dataUserObject[users.user_id].messages = localStorage.getItem(users.user_id) ? JSON.parse(localStorage.getItem(users.user_id)) : localStorage.setItem(users.user_id, JSON.stringify(dataUserObject[users.user_id].messages));
     })
+    useEffect(() => {
+        fetch('https://api.chucknorris.io/jokes/random')
+            .then(res => res.json())
+            .then((result) => {
+
+                setChuck(result.value);
+            })
+    }, [dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length - 1].message])
     return (
         <section>
             <div className='content'>
-                <LeftPanel changeChat={setActiveChat}/>
-                <Chat activeChat={activeChat} lastMessage={lastMessage} setLastMessage={setLastMessage}/>
+                <LeftPanel changeChat={setActiveChat} rerender={lastMessage} setMessage={setMessage}/>
+                <Chat activeChat={activeChat} chuck={chuck} setLastMessage={setLastMessage} message={message} setMessage={setMessage}/>
             </div>
         </section>
     );

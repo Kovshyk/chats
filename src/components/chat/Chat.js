@@ -1,21 +1,20 @@
-import React, {useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import './chat.css'
 import {dataUserObject} from '../../data/dataUsers'
 import moment from 'moment';
 
 
-const Chat = ({activeChat, setLastMessage}) => {
+const Chat = ({activeChat, setLastMessage, chuck, setMessage, message}) => {
 
-
-    const [message, setMessage] = useState('')
-    const addMessage = () => {
+    const addMessage = (id, name, message) => {
         if (message === '') return
+        if (message === ' ') return
         setLastMessage(Math.random())
         dataUserObject[activeChat].messages.push(
             {
-                id: 'name',
-                userName: 'lol',
-                time:[moment().format('MMM Do YY, h:mm:ss a'), moment().format('MMM Do YY')],
+                id: id,
+                userName: name,
+                time:[moment().format('MMM Do YY, h:mm:ss a'), moment().format('MMM Do YY'), Date.now()],
                 message: message
 
             });
@@ -23,7 +22,19 @@ const Chat = ({activeChat, setLastMessage}) => {
         setMessage('')
 
 
+       // setTimeout(chuckMessage, 1000)
+        //setSendMessage(false)
     }
+
+useEffect(()=>{
+    if(dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length-1].id===activeChat)return
+
+ setTimeout(()=>{
+       addMessage(dataUserObject[activeChat].user_id, dataUserObject[activeChat].userName, chuck)
+ },6000)
+},[dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length-1].id])
+
+
     return (
         <div className='chat'>
             <div className='top'>
@@ -48,7 +59,7 @@ const Chat = ({activeChat, setLastMessage}) => {
                                     colorText = 'black'
                                 }
                                 return (
-                                    <li className={positionText}>
+                                    <li className={positionText} key={messages.time[2]}>
                                         <div>
                                             <div><img src={dataUserObject[activeChat].userPhoto} alt=""/></div>
                                             <p className={colorText}>{messages.message}</p></div>
@@ -68,8 +79,9 @@ const Chat = ({activeChat, setLastMessage}) => {
             <div className='message'>
                 <label><textarea placeholder='Type your message...' value={message}
                                  onChange={e => setMessage(e.target.value)} tabIndex={1}
-                                 onKeyPress={(e) => e.key === 'Enter' && addMessage()}/><i
-                    className="bi bi-send" onClick={addMessage}/></label>
+                                 onKeyDown={(e) => e.key === 'Enter' && addMessage('lol', 'lolol',message)}
+                                onKeyUp={(e) => e.key === 'Enter' && setMessage('')}/><i
+                    className="bi bi-send" onClick={()=>addMessage('lol', 'lolol',message)}/></label>
 
             </div>
 
