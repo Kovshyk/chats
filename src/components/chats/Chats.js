@@ -8,6 +8,7 @@ const Chats = () => {
     const [chuck, setChuck] = useState(' ')
     const [lastMessage, setLastMessage] = useState()
     const [message, setMessage] = useState('')
+    const [visible, setVisible]=useState(true)
     dataUsers.map(users => {
         dataUserObject[users.user_id].messages = localStorage.getItem(users.user_id) ? JSON.parse(localStorage.getItem(users.user_id)) : localStorage.setItem(users.user_id, JSON.stringify(dataUserObject[users.user_id].messages));
     })
@@ -22,8 +23,19 @@ const Chats = () => {
     return (
         <section>
             <div className='content'>
-                <LeftPanel changeChat={setActiveChat} rerender={lastMessage} setMessage={setMessage}/>
-                <Chat activeChat={activeChat} chuck={chuck} setLastMessage={setLastMessage} message={message} setMessage={setMessage}/>
+                <LeftPanel changeChat={setActiveChat}
+                           rerender={lastMessage}
+                           setMessage={setMessage}
+                           visible={visible}
+                           setVisible={setVisible}
+                />
+                <Chat activeChat={activeChat}
+                      chuck={chuck}
+                      setLastMessage={setLastMessage}
+                      message={message}
+                      setMessage={setMessage}
+                      visible={visible}
+                      setVisible={setVisible}/>
             </div>
         </section>
     );

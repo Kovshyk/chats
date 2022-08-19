@@ -3,26 +3,26 @@ export const dataUsers=[
         user_id:'pretty',
         userName:'Pretty Cat',
         lastMessage:'1',
-        userPhoto:'http://placekitten.com/202/300',
+        userPhoto:'http://placekitten.com/222/300',
     },
     {
         user_id:'funny',
         userName:'Funny Cat',
         lastMessage:'3',
-        userPhoto:'http://placekitten.com/203/300',
+        userPhoto:'http://placekitten.com/303/300',
     },
     {
         user_id:'small',
         userName:'Small Cat',
         lastMessage:'2',
-        userPhoto:'http://placekitten.com/204/300',
+        userPhoto:'http://placekitten.com/104/300',
     },
     ]
 export const dataUserObject={
     pretty: {
         user_id:'pretty',
         userName:'Pretty Cat',
-        userPhoto:'http://placekitten.com/202/300',
+        userPhoto:'http://placekitten.com/222/300',
         messages:[
             {   id:'pretty',
                 userName:'Pretty Cat',
@@ -41,7 +41,7 @@ export const dataUserObject={
     funny:{
         user_id:'funny',
         userName:'Funny Cat',
-        userPhoto:'http://placekitten.com/203/300',
+        userPhoto:'http://placekitten.com/303/300',
         messages:[
 
             {   id:'funny',
@@ -57,7 +57,7 @@ export const dataUserObject={
     small:{
         user_id:'small',
         userName:'Small Cat',
-        userPhoto:'http://placekitten.com/204/300',
+        userPhoto:'http://placekitten.com/104/300',
         messages:[
             {   id:'small',
                 userName:'Small Cat',

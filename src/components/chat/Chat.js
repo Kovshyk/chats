@@ -4,7 +4,7 @@ import {dataUserObject} from '../../data/dataUsers'
 import moment from 'moment';
 
 
-const Chat = ({activeChat, setLastMessage, chuck, setMessage, message}) => {
+const Chat = ({activeChat, setLastMessage, chuck, setMessage, message, setVisible, visible}) => {
 
     const addMessage = (id, name, message) => {
         if (message === '') return
@@ -36,12 +36,12 @@ useEffect(()=>{
 
 
     return (
-        <div className='chat'>
+        <div className='chat'  style={ window.innerWidth<768 ? visible ? { display:'none'} : {display:'grid'}  : []}>
             <div className='top'>
 
                 <div><img src={dataUserObject[activeChat].userPhoto} alt=""/></div>
                 <h3>{dataUserObject[activeChat].userName}</h3>
-
+                <button className='closeChat' onClick={()=>setVisible(true)}><i className="bi bi-x-lg"/></button>
             </div>
 
 

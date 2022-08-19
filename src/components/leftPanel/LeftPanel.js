@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {dataUsers, dataUserObject} from '../../data/dataUsers'
 import './leftPanel.css'
 
-const LeftPanel = ({changeChat, rerender,setMessage}) => {
+const LeftPanel = ({changeChat, rerender,setMessage, setVisible, visible}) => {
     const [search, setSearch] = useState('')
     const [render, setRender] = useState('')
     const [dataUser, setDataUsers] = useState(dataUsers)
@@ -16,8 +16,9 @@ const LeftPanel = ({changeChat, rerender,setMessage}) => {
         return [...sorted].filter(dataUsers => dataUsers.userName.toLowerCase().includes(search.toLowerCase()))
     }, [search, sorted])
 
+
     return (
-        <div className='leftPanel'>
+        <div className='leftPanel' style={window.innerWidth< 768 ? visible ? {display:'grid'} : {display:'none'}  : []}>
 
             <div className='header'>
                 <div><img src="http://placekitten.com/200/300" alt=""/></div>
@@ -35,6 +36,7 @@ const LeftPanel = ({changeChat, rerender,setMessage}) => {
                             <div key={user.user_id} onClick={() => {
                                 changeChat(user.user_id)
                                 setMessage('')
+                                setVisible(false)
                             }}>
                                 <div className="contact">
                                     <div><img src={user.userPhoto} alt=""/></div>
