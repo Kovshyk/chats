@@ -7,7 +7,7 @@ import moment from 'moment';
 const Chat = ({activeChat, setLastMessage, chuck, setMessage, message, setVisible, visible}) => {
 let messagesEnd=useRef(null)
     let field=useRef(null)
-console.log(field)
+
     const handleScroll = (ref, field) => {
         field.scrollTo({
             top: ref.offsetTop,
