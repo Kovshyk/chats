@@ -3,12 +3,12 @@ import Chat from "../chat/Chat";
 import LeftPanel from "../leftPanel/LeftPanel";
 import {dataUsers, dataUserObject} from '../../data/dataUsers'
 
-const Chats = ({userParams,setUser}) => {
+const Chats = ({userParams, setUser}) => {
     const [activeChat, setActiveChat] = useState('small')
     const [chuck, setChuck] = useState(' ')
     const [lastMessage, setLastMessage] = useState()
     const [message, setMessage] = useState('')
-    const [visible, setVisible]=useState(true)
+    const [visible, setVisible] = useState(true)
     dataUsers.map(users => {
         dataUserObject[users.user_id].messages = localStorage.getItem(users.user_id) ? JSON.parse(localStorage.getItem(users.user_id)) : localStorage.setItem(users.user_id, JSON.stringify(dataUserObject[users.user_id].messages));
     })
@@ -39,7 +39,7 @@ const Chats = ({userParams,setUser}) => {
                       visible={visible}
                       setVisible={setVisible}
                       userParams={userParams}
-                      />
+                />
             </div>
         </section>
     );

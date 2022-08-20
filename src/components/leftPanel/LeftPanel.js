@@ -2,7 +2,7 @@ import React, {useEffect, useMemo, useState} from 'react';
 import {dataUsers, dataUserObject} from '../../data/dataUsers'
 import './leftPanel.css'
 
-const LeftPanel = ({changeChat, rerender,setMessage, setVisible, visible,userParams,setUser}) => {
+const LeftPanel = ({changeChat, rerender, setMessage, setVisible, visible, userParams, setUser}) => {
     const [search, setSearch] = useState('')
     const [render, setRender] = useState('')
     const [dataUser, setDataUsers] = useState(dataUsers)
@@ -18,13 +18,18 @@ const LeftPanel = ({changeChat, rerender,setMessage, setVisible, visible,userPar
 
 
     return (
-        <div className='leftPanel' style={window.innerWidth< 768 ? visible ? {display:'grid'} : {display:'none'}  : []}>
+        <div className='leftPanel'
+             style={window.innerWidth < 768 ? visible ? {display: 'grid'} : {display: 'none'} : []}>
 
             <div className='header'>
-                <div className='userMenu'><div className='userName'><img src={userParams.photo} alt=""/> <h1>{userParams.name}</h1></div> <button onClick={()=> {
-                    setUser(false)
-                    localStorage.setItem('login', 0)
-                }}>Logout</button> </div>
+                <div className='userMenu'>
+                    <div className='userName'><img src={userParams.photo} alt=""/> <h1>{userParams.name}</h1></div>
+                    <button onClick={() => {
+                        setUser(false)
+                        localStorage.setItem('login', 0)
+                    }}>Logout
+                    </button>
+                </div>
 
                 <label className='search'><i className="bi bi-search"/>
                     <input placeholder='Search' type="text"

@@ -4,14 +4,14 @@ import {dataUserObject} from '../../data/dataUsers'
 import moment from 'moment';
 
 
-const Chat = ({activeChat, setLastMessage, chuck, setMessage, message, setVisible, visible,userParams}) => {
-let messagesEnd=useRef(null)
-    let field=useRef(null)
+const Chat = ({activeChat, setLastMessage, chuck, setMessage, message, setVisible, visible, userParams}) => {
+    let messagesEnd = useRef(null)
+    let field = useRef(null)
 
     const handleScroll = (ref, field) => {
         field.scrollTo({
             top: ref.offsetTop,
-            left:0,
+            left: 0,
             behavior: "smooth",
         });
     };
@@ -26,7 +26,7 @@ let messagesEnd=useRef(null)
             {
                 id: id,
                 userName: name,
-                time:[moment().format('MMM Do YY, h:mm:ss a'), moment().format('MMM Do YY'), Date.now()],
+                time: [moment().format('MMM Do YY, h:mm:ss a'), moment().format('MMM Do YY'), Date.now()],
                 message: message
 
             });
@@ -36,24 +36,24 @@ let messagesEnd=useRef(null)
 
     }
 
-useEffect(()=>{
-    if(dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length-1].id===activeChat)return
+    useEffect(() => {
+        if (dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length - 1].id === activeChat) return
 
- setTimeout(()=>{
-       addMessage(dataUserObject[activeChat].user_id, dataUserObject[activeChat].userName, chuck)
- },6000)
-},[dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length-1].id])
-    useEffect(()=>{
+        setTimeout(() => {
+            addMessage(dataUserObject[activeChat].user_id, dataUserObject[activeChat].userName, chuck)
+        }, 6000)
+    }, [dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length - 1].id])
+    useEffect(() => {
         handleScroll(messagesEnd.current, field.current)
-    },[dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length-1].id])
+    }, [dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length - 1].id])
 
     return (
-        <div className='chat'  style={ window.innerWidth<768 ? visible ? { display:'none'} : {display:'grid'}  : []}>
+        <div className='chat' style={window.innerWidth < 768 ? visible ? {display: 'none'} : {display: 'grid'} : []}>
             <div className='top'>
 
                 <div><img src={dataUserObject[activeChat].userPhoto} alt=""/></div>
                 <h3>{dataUserObject[activeChat].userName}</h3>
-                <button className='closeChat' onClick={()=>setVisible(true)}><i className="bi bi-x-lg"/></button>
+                <button className='closeChat' onClick={() => setVisible(true)}><i className="bi bi-x-lg"/></button>
             </div>
 
 
@@ -82,7 +82,7 @@ useEffect(()=>{
                     }
 
                     <li
-                         ref={messagesEnd}>
+                        ref={messagesEnd}>
                     </li>
 
 
@@ -94,9 +94,9 @@ useEffect(()=>{
             <div className='message'>
                 <label><textarea placeholder='Type your message...' value={message}
                                  onChange={e => setMessage(e.target.value)} tabIndex={1}
-                                 onKeyDown={(e) => e.key === 'Enter' && addMessage(userParams.id, userParams.name,message)}
-                                onKeyUp={(e) => e.key === 'Enter' && setMessage('')}/><i
-                    className="bi bi-send" onClick={()=>addMessage(userParams.id, userParams.name,message)}/></label>
+                                 onKeyDown={(e) => e.key === 'Enter' && addMessage(userParams.id, userParams.name, message)}
+                                 onKeyUp={(e) => e.key === 'Enter' && setMessage('')}/><i
+                    className="bi bi-send" onClick={() => addMessage(userParams.id, userParams.name, message)}/></label>
 
             </div>
             <script>
