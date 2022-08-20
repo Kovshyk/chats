@@ -4,7 +4,7 @@ import {dataUserObject} from '../../data/dataUsers'
 import moment from 'moment';
 
 
-const Chat = ({activeChat, setLastMessage, chuck, setMessage, message, setVisible, visible}) => {
+const Chat = ({activeChat, setLastMessage, chuck, setMessage, message, setVisible, visible,userParams}) => {
 let messagesEnd=useRef(null)
     let field=useRef(null)
 
@@ -94,9 +94,9 @@ useEffect(()=>{
             <div className='message'>
                 <label><textarea placeholder='Type your message...' value={message}
                                  onChange={e => setMessage(e.target.value)} tabIndex={1}
-                                 onKeyDown={(e) => e.key === 'Enter' && addMessage('lol', 'lolol',message)}
+                                 onKeyDown={(e) => e.key === 'Enter' && addMessage(userParams.id, userParams.name,message)}
                                 onKeyUp={(e) => e.key === 'Enter' && setMessage('')}/><i
-                    className="bi bi-send" onClick={()=>addMessage('lol', 'lolol',message)}/></label>
+                    className="bi bi-send" onClick={()=>addMessage(userParams.id, userParams.name,message)}/></label>
 
             </div>
             <script>

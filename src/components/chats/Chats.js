@@ -3,7 +3,7 @@ import Chat from "../chat/Chat";
 import LeftPanel from "../leftPanel/LeftPanel";
 import {dataUsers, dataUserObject} from '../../data/dataUsers'
 
-const Chats = () => {
+const Chats = ({userParams,setUser}) => {
     const [activeChat, setActiveChat] = useState('small')
     const [chuck, setChuck] = useState(' ')
     const [lastMessage, setLastMessage] = useState()
@@ -28,6 +28,8 @@ const Chats = () => {
                            setMessage={setMessage}
                            visible={visible}
                            setVisible={setVisible}
+                           userParams={userParams}
+                           setUser={setUser}
                 />
                 <Chat activeChat={activeChat}
                       chuck={chuck}
@@ -35,7 +37,9 @@ const Chats = () => {
                       message={message}
                       setMessage={setMessage}
                       visible={visible}
-                      setVisible={setVisible}/>
+                      setVisible={setVisible}
+                      userParams={userParams}
+                      />
             </div>
         </section>
     );

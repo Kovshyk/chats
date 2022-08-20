@@ -28,8 +28,37 @@
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
+    margin-bottom: 0.5rem;
+
+}
+.userName{
+    display: flex;
+    flex-direction: column;
     margin-bottom: 3rem;
     margin-left: 1rem;
+}
+.userMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.userMenu button{
+    border: none;
+    background:#e0e0e0;
+    padding: 0.6rem;
+    border-radius: 10px;
+    margin: 0.2rem;
+    cursor: pointer;
+    font-weight: bold;
+
+}
+.userMenu button:hover{
+    background:#3c4252;
+    padding: 0.7rem;
+    margin: 0.3rem;
+    color: white;
+
 }
 .search{
 
