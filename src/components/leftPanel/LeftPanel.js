@@ -21,7 +21,7 @@ const LeftPanel = ({changeChat, rerender,setMessage, setVisible, visible,userPar
         <div className='leftPanel' style={window.innerWidth< 768 ? visible ? {display:'grid'} : {display:'none'}  : []}>
 
             <div className='header'>
-                <div className='userMenu'><div className='userName'><img data-src={userParams.photo} alt=""/> <h1>{userParams.name}</h1></div> <button onClick={()=> {
+                <div className='userMenu'><div className='userName'><img src={userParams.photo} alt=""/> <h1>{userParams.name}</h1></div> <button onClick={()=> {
                     setUser(false)
                     localStorage.setItem('login', 0)
                 }}>Logout</button> </div>
