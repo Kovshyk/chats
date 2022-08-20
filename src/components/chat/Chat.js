@@ -1,14 +1,26 @@
-import React, {useCallback, useEffect, useMemo, useState} from 'react';
+import React, {useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import './chat.css'
 import {dataUserObject} from '../../data/dataUsers'
 import moment from 'moment';
 
 
 const Chat = ({activeChat, setLastMessage, chuck, setMessage, message, setVisible, visible}) => {
+let messagesEnd=useRef(null)
+    let field=useRef(null)
+console.log(field)
+    const handleScroll = (ref, field) => {
+        field.scrollTo({
+            top: ref.offsetTop,
+            left:0,
+            behavior: "smooth",
+        });
+    };
+
 
     const addMessage = (id, name, message) => {
         if (message === '') return
         if (message === ' ') return
+
         setLastMessage(Math.random())
         dataUserObject[activeChat].messages.push(
             {
@@ -18,12 +30,10 @@ const Chat = ({activeChat, setLastMessage, chuck, setMessage, message, setVisibl
                 message: message
 
             });
+
         localStorage.setItem(dataUserObject[activeChat].user_id, JSON.stringify(dataUserObject[activeChat].messages))
         setMessage('')
 
-
-       // setTimeout(chuckMessage, 1000)
-        //setSendMessage(false)
     }
 
 useEffect(()=>{
@@ -33,7 +43,9 @@ useEffect(()=>{
        addMessage(dataUserObject[activeChat].user_id, dataUserObject[activeChat].userName, chuck)
  },6000)
 },[dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length-1].id])
-
+    useEffect(()=>{
+        handleScroll(messagesEnd.current, field.current)
+    },[dataUserObject[activeChat].messages[dataUserObject[activeChat].messages.length-1].id])
 
     return (
         <div className='chat'  style={ window.innerWidth<768 ? visible ? { display:'none'} : {display:'grid'}  : []}>
@@ -45,7 +57,7 @@ useEffect(()=>{
             </div>
 
 
-            <div className='chat_field'>
+            <div className='chat_field' ref={field}>
                 <ul>
                     {
                         dataUserObject[activeChat].messages.map(messages => {
@@ -69,9 +81,12 @@ useEffect(()=>{
                         )
                     }
 
+                    <li
+                         ref={messagesEnd}>
+                    </li>
+
 
                 </ul>
-
 
             </div>
 
@@ -84,7 +99,9 @@ useEffect(()=>{
                     className="bi bi-send" onClick={()=>addMessage('lol', 'lolol',message)}/></label>
 
             </div>
+            <script>
 
+            </script>
         </div>
 
     )

@@ -112,12 +112,12 @@ float: right;
 
 }
 .white{
-    background: black;
+    background: #3c4252;
     color:white;
     text-align: left;
 }
 .black{
-    background: white;
+    background: #e0e0e0;
     color:black;
     text-align: right;
 }
@@ -155,7 +155,6 @@ float: right;
     display: block;
     border: none;
     background: none;
-    margin-left: 20%;
 
 }
 .closeChat i{
